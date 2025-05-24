@@ -21,14 +21,18 @@ async function getLoginHistory(_, res) {
       errMsg: err.message,
     });
   } finally {
-    dbconnect.end((err) => {
-      if (err) {
-        res.status(500).json({
-          status: "E",
-          errMsg: err.message,
-        });
-      }
-    });
+    console.log(dbconnect);
+
+    if (dbconnect) {
+      dbconnect.end((err) => {
+        if (err) {
+          res.status(500).json({
+            status: "E",
+            errMsg: err.message,
+          });
+        }
+      });
+    }
   }
 
   console.log("getLoginHistory (-)");
