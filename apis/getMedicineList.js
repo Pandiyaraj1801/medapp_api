@@ -56,7 +56,7 @@ async function getMedicineListQuery(dbconnect, getMedicineStruct) {
   console.log("getMedicineListQuery (+)");
 
   const sqlQuery = `select id, medicinename, quantity, brand, unitprice
-                    from medicineList`;
+                    from medicinelist`;
 
   return await new Promise((resolve, reject) => {
     dbconnect.query(sqlQuery, (err, result) => {

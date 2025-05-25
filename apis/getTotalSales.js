@@ -50,7 +50,7 @@ async function getTodayTotalSalesQuery(dbconnect, todayTotalSales) {
 
   const sqlQuery = `
 select sum(netpayable) as totalAmt
-from dev.billentrydetails
+from billentrydetails
 where str_to_date(billdate, '%d/%m/%Y') = curdate();`;
 
   return await new Promise((resolve, reject) => {

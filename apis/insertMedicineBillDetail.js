@@ -189,7 +189,7 @@ async function insertMedQueryFunc(dbconnect, body, billId, medBillRespStruct) {
 async function updateMedicineQty(dbconnect, billId, medBillRespStruct) {
   console.log("updateMedicineQty (+)");
 
-  const sqlQuery = `update dev.medicinelist ml
+  const sqlQuery = `update medicinelist ml
   join (
       select medicine_id, sum(quantity) as total_quantity
       from dev.medicinebilldetails
