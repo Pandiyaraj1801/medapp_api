@@ -1,0 +1,5 @@
+db_host = "crossover.proxy.rlwy.net"
+db_user = "root"
+db_pass = "sLdsHbsTYvydUYBhRXeyDfIeutvEcofs"
+db_name = "railway"
+db_port = 10514

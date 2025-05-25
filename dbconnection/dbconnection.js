@@ -1,13 +1,19 @@
 import mysql from "mysql";
+import fs from "fs";
+import toml from "@iarna/toml";
+
+const configData = toml.parse(fs.readFileSync("config.toml", "utf-8"));
 
 async function dbConnectionFunc() {
   console.log("dbConnectionFunc (+)");
+
   return await new Promise((resolve, reject) => {
     const dbconfig = {
-      host: "127.0.0.1",
-      user: "root",
-      password: "root",
-      database: "dev",
+      host: configData.db_host,
+      user: configData.db_user,
+      password: configData.db_pass,
+      database: configData.db_name,
+      port: configData.db_port,
     };
 
     const dbconnect = mysql.createConnection(dbconfig);

@@ -62,11 +62,16 @@ async function insertMedicineBillDetail(req, res) {
     medBillRespStruct.errMsg = err;
     res.status(500).json(err);
   } finally {
-    dbconnect.end((err) => {
-      if (err) {
-        res.status(500).json(`Error closing the database connection: ${err}`);
-      }
-    });
+    if (dbconnect) {
+      dbconnect.end((err) => {
+        if (err) {
+          res.status(500).json({
+            status: "E",
+            errMsg: err,
+          });
+        }
+      });
+    }
   }
 
   console.log("insertMedicineBillDetail (-)");

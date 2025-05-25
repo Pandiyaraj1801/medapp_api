@@ -45,11 +45,16 @@ async function insertBillDetails(req, res) {
     billDetailRespStruct.errMsg = err;
     res.status(500).json(billDetailRespStruct);
   } finally {
-    dbconnect.end((err) => {
-      if (err) {
-        res.status(500).json(`Error closing the database connection: ${err}`);
-      }
-    });
+    if (dbconnect) {
+      dbconnect.end((err) => {
+        if (err) {
+          res.status(500).json({
+            status: "E",
+            errMsg: err,
+          });
+        }
+      });
+    }
   }
 }
 

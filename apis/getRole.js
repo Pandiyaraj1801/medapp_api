@@ -21,14 +21,12 @@ async function getRole(_, res) {
       errMsg: err.message,
     });
   } finally {
-    console.log(dbconnect);
-
     if (dbconnect) {
       dbconnect.end((err) => {
         if (err) {
           res.status(500).json({
             status: "E",
-            errMsg: err.message,
+            errMsg: err,
           });
         }
       });

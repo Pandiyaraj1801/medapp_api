@@ -27,11 +27,16 @@ async function getTodayTotalSales(req, res) {
     todayTotalSales.status = "E";
     res.status(500).json(err);
   } finally {
-    dbconnect.end((err) => {
-      if (err) {
-        res.status(500).json(`Error closing the database connection: ${err}`);
-      }
-    });
+    if (dbconnect) {
+      dbconnect.end((err) => {
+        if (err) {
+          res.status(500).json({
+            status: "E",
+            errMsg: err,
+          });
+        }
+      });
+    }
   }
 
   console.log("getTodayTotalSales (-)");
