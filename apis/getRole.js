@@ -16,15 +16,15 @@ async function getRole(_, res) {
       res.status(200).json(result);
     }
   } catch (err) {
-    res.status(500).json({
+    res.status(200).json({
       status: "E",
-      errMsg: err.message,
+      errMsg: err,
     });
   } finally {
     if (dbconnect) {
       dbconnect.end((err) => {
         if (err) {
-          res.status(500).json({
+          res.status(200).json({
             status: "E",
             errMsg: err,
           });

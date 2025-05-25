@@ -60,12 +60,15 @@ async function insertMedicineBillDetail(req, res) {
     console.log("errcatch", err || err.message);
     medBillRespStruct.status = "E";
     medBillRespStruct.errMsg = err;
-    res.status(500).json(err);
+    res.status(200).json({
+      status: "E",
+      errMsg: err,
+    });
   } finally {
     if (dbconnect) {
       dbconnect.end((err) => {
         if (err) {
-          res.status(500).json({
+          res.status(200).json({
             status: "E",
             errMsg: err,
           });

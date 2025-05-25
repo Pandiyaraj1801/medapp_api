@@ -32,12 +32,15 @@ async function getMedicineList(req, res) {
     }
   } catch (err) {
     getMedicineStruct.status = "E";
-    res.status(500).json(err);
+    res.status(200).json({
+      status: "E",
+      errMsg: err,
+    });
   } finally {
     if (dbconnect) {
       dbconnect.end((err) => {
         if (err) {
-          res.status(500).json({
+          res.status(200).json({
             status: "E",
             errMsg: err,
           });

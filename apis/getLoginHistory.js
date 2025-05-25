@@ -16,7 +16,7 @@ async function getLoginHistory(_, res) {
       res.status(200).json(result);
     }
   } catch (err) {
-    res.status(500).json({
+    res.status(200).json({
       status: "E",
       errMsg: err,
     });
@@ -24,9 +24,9 @@ async function getLoginHistory(_, res) {
     if (dbconnect) {
       dbconnect.end((err) => {
         if (err) {
-          res.status(500).json({
+          res.status(200).json({
             status: "E",
-            errMsg: err.message,
+            errMsg: err,
           });
         }
       });

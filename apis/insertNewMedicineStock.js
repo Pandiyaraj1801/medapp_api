@@ -16,12 +16,15 @@ async function insertNewMedicineStock(req, res) {
       res.status(201).json(result);
     }
   } catch (err) {
-    res.status(500).json(err);
+    res.status(200).json({
+      status: "E",
+      errMsg: err,
+    });
   } finally {
     if (dbconnect) {
       dbconnect.end((err) => {
         if (err) {
-          res.status(500).json({
+          res.status(200).json({
             status: "E",
             errMsg: err,
           });
