@@ -2,9 +2,7 @@ import mysql from "mysql";
 import fs from "fs";
 import toml from "@iarna/toml";
 
-const configData = toml.parse(
-  fs.readFileSync("../toml/dbconfig.toml", "utf-8")
-);
+const configData = toml.parse(fs.readFileSync("toml/dbconfig.toml", "utf-8"));
 
 async function dbConnectionFunc() {
   console.log("dbConnectionFunc (+)");
